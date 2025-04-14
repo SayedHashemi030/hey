@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8">
+  <title>پیام عاشقانه</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      font-size: 24px;
+      background-color: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #messageBox {
+      width: 400px;
+      height: 300px;
+      overflow-y: auto;
+      border: 2px solid #ff69b4;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="messageBox"></div>
+
+  <script>
+    const box = document.getElementById("messageBox");
+    let count = 0;
+    const max = 150;
+
+    function addMessage() {
+      if (count >= max) return;
+      const line = document.createElement("div");
+      line.textContent = "دوستت دارم ♥";
+      box.appendChild(line);
+      box.scrollTop = box.scrollHeight;
+      count++;
+      setTimeout(addMessage, 200); // 200 میلی‌ثانیه بین پیام‌ها
+    }
+
+    addMessage();
+  </script>
+</body>
+</html>
