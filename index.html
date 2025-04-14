@@ -1,50 +1,68 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>پیام عاشقانه</title>
-  <style>
-    body {
-      font-family: 'Tahoma', sans-serif;
-      font-size: 24px;
-      background-color: #fff0f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-    #messageBox {
-      width: 400px;
-      height: 300px;
-      overflow-y: auto;
-      border: 2px solid #ff69b4;
-      padding: 10px;
-      border-radius: 10px;
-      background-color: white;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیام عاشقانه</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .heart {
+            position: absolute;
+            color: red; /* رنگ قلب قرمز */
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-50px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="messageBox"></div>
+    <script>
+        function createLoveMessage() {
+            const message = 'دوستت دارم ♥';
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = message;
 
-  <script>
-    const box = document.getElementById("messageBox");
-    let count = 0;
-    const max = 150;
+            // موقعیت تصادفی برای قلب
+            const xPos = Math.random() * window.innerWidth;
+            const yPos = Math.random() * window.innerHeight;
 
-    function addMessage() {
-      if (count >= max) return;
-      const line = document.createElement("div");
-      line.textContent = "دوستت دارم ♥";
-      box.appendChild(line);
-      box.scrollTop = box.scrollHeight;
-      count++;
-      setTimeout(addMessage, 200); // 200 میلی‌ثانیه بین پیام‌ها
-    }
+            // تنظیم موقعیت تصادفی
+            heart.style.left = xPos + 'px'; // بدون ${}
+            heart.style.top = yPos + 'px';  // بدون ${}
 
-    addMessage();
-  </script>
+            // اندازه تصادفی برای قلب
+            const size = Math.random() * 30 + 20; // اندازه بین 20 تا 50
+            heart.style.fontSize = size + 'px'; // بدون ${}
+
+            document.body.appendChild(heart);
+
+            // حذف قلب بعد از 3 ثانیه
+            setTimeout(() => {
+                heart.remove();
+            }, 3000); // بعد از 3 ثانیه قلب حذف می‌شود
+        }
+
+        // ایجاد پیام‌ها هر 0.2 ثانیه
+        setInterval(createLoveMessage, 200);
+    </script>
 </body>
 </html>
